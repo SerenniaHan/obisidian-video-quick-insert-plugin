@@ -1,94 +1,173 @@
-# Obsidian Sample Plugin
+# Quick Video Insert
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+A convenient Obsidian plugin that allows you to quickly insert videos into your notes from both local files and online URLs.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- **Dual Video Sources**: Insert videos from local files or online URLs
+- **Local File Import**: Browse and import video files directly into your vault
+- **URL Embedding**: Embed videos from online sources using iframe
+- **Customizable Size**: Set custom width and height for your video players
+- **Cross-Platform**: Works on both desktop and mobile devices
+- **Multiple Video Formats**: Supports common video formats (MP4, WebM, OGV, etc.)
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+### From Obsidian Community Plugins (Recommended)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. Open Obsidian Settings
+2. Navigate to **Community plugins**
+3. Click **Browse** and search for "Quick Video Insert"
+4. Install and enable the plugin
 
-## Releasing new releases
+### Manual Installation
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1. Download the latest release from the [GitHub releases page](https://github.com/SerenniaHan/obisidian-video-quick-insert-plugin/releases)
+2. Extract the files to your vault's plugins folder: `<vault>/.obsidian/plugins/obsidian-video-quick-insert/`
+3. Reload Obsidian and enable the plugin in **Settings → Community plugins**
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## Usage
 
-## Adding your plugin to the community plugin list
+### Basic Usage
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+1. Place your cursor where you want to insert the video
+2. Open the command palette (`Ctrl+P` / `Cmd+P`)
+3. Search for and select **"Insert Video Link"**
+4. Choose your video source and configure settings
+5. Click **"Insert"** to add the video to your note
 
-## How to use
+### Video Sources
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+#### Local Video Files
 
-## Manually installing the plugin
+- Select **"Local File"** from the dropdown
+- Choose the destination folder for importing your video
+- Click **"Browse"** to select a video file from your computer
+- The video will be copied to your vault and embedded using HTML5 `<video>` tags
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+#### Online Video URLs
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint ./src/`
+- Select **"Video URL"** from the dropdown  
+- Enter the video URL (supports YouTube, Vimeo, and other embeddable sources)
+- The video will be embedded using an `<iframe>`
 
-## Funding URL
+### Size Configuration
 
-You can include funding URLs where people who use your plugin can financially support it.
+Set custom dimensions for your video player:
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
+- **Width**: Set the width (e.g., `640`, `auto`, `100%`)
+- **Height**: Set the height (e.g., `360`, `auto`, `50vh`)
 
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+### Keyboard Shortcuts
+
+While the insert modal is open:
+
+- **Enter**: Insert the video with current settings
+- **Escape**: Cancel and close the modal
+
+## Examples
+
+### Local Video
+
+```html
+<video controls width="640" height="360">
+    <source src="app://obsidian.md/Imported Videos/my-video.mp4" type="video/mp4">
+</video>
 ```
 
-If you have multiple URLs, you can also do:
+### YouTube Video
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
+```html
+<iframe width="640" height="360" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
 ```
 
-## API Documentation
+## Supported Video Sources
 
-See https://github.com/obsidianmd/obsidian-api
+### Local Files
+
+- MP4 (.mp4)
+- WebM (.webm)
+- OGV (.ogv)
+- AVI (.avi)
+- MOV (.mov)
+- And other formats supported by HTML5 video
+
+### Online Sources
+
+- YouTube (use embed URLs)
+- Vimeo
+- Direct video file URLs
+- Any embeddable video source
+
+## Tips and Best Practices
+
+1. **Local Files**: For better vault portability, use local files when possible
+2. **File Organization**: Create a dedicated folder (e.g., "Videos" or "Media") for imported videos
+3. **Size Settings**: Use `auto` for responsive videos that adapt to your note width
+4. **URL Format**: For YouTube videos, use embed URLs: `https://www.youtube.com/embed/VIDEO_ID`
+5. **Performance**: Large video files may impact vault sync speed
+
+## Troubleshooting
+
+### Video Not Playing
+
+- **Local files**: Ensure the video format is supported by your browser
+- **Online videos**: Check that the URL is accessible and embeddable
+- Try refreshing the note or restarting Obsidian
+
+### Import Issues
+
+- Ensure you have write permissions to the selected import folder
+- Check that the video file isn't corrupted
+- Verify the file format is supported
+
+### Display Problems
+
+- Adjust width/height settings if the video appears too large or small
+- Use percentage values (e.g., `100%`) for responsive design
+- Check if your theme CSS interferes with video display
+
+## Development
+
+### Building from Source
+
+```bash
+npm install
+npm run build
+```
+
+### Development Mode
+
+```bash
+npm run dev
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests on the [GitHub repository](https://github.com/SerenniaHan/obisidian-video-quick-insert-plugin).
+
+## License
+
+This plugin is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- **Issues**: [GitHub Issues](https://github.com/SerenniaHan/obisidian-video-quick-insert-plugin/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/SerenniaHan/obisidian-video-quick-insert-plugin/discussions)
+- **Funding**: [Support the Developer](https://github.com/SerenniaHan/obisidian-video-quick-insert-plugin)
+
+## Changelog
+
+### v1.0.0
+
+- Initial release
+- Support for local video file import
+- Support for online video URL embedding
+- Customizable video player dimensions
+- Cross-platform compatibility
+
+---
+
+**Author**: [Yihoo Kan](https://github.com/SerenniaHan)  
+**Version**: 1.0.0  
+**Minimum Obsidian Version**: 0.15.0
