@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "obsidian-video-quick-insert",
+	"name": "obsidian-video-quick-insert",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "A plugin to quickly insert video links into your notes.",
+	"author": "Yihoo Kan",
+	"authorUrl": "https://github.com/SerenniaHan",
+	"fundingUrl": "https://github.com/SerenniaHan/obisidian-video-quick-insert-plugin",
 	"isDesktopOnly": false
 }
