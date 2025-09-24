@@ -1,6 +1,6 @@
 {
 	"id": "obsidian-video-quick-insert",
-	"name": "obsidian-video-quick-insert",
+	"name": "Quick Video Insert",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "A plugin to quickly insert video links into your notes.",
